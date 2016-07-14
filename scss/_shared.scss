@@ -1,0 +1,219 @@
+.section {
+    width: 100%;
+    position: relative;
+    padding-top: 55px;
+    padding-left: 210px;
+    padding-right: 210px;
+    padding-bottom: 140px;
+    background-color: #fbf9f4;
+
+    @media ( max-width: 800px ) {
+        padding-left: 25px;
+        padding-right: 25px;
+    }
+}
+
+.layer {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.wrapper {
+    width: 100%;
+    overflow-x: hidden;
+}
+
+.wrapper.before {
+    & > div {
+        transition: transform 0.8s $strong-ease-out;
+    }
+
+    @for $i from 1 through 19 {
+        .block-#{ $i } {
+            transition: transform #{ 0.4s + $i * 0.02s } #{ $i * 0.02s } ease-out;
+        }
+    }
+}
+
+.wrapper.idle {
+    & > div {
+        transition: transform 0.8s $strong-ease-in;
+    }
+
+    @for $i from 1 through 19 {
+        .block-#{ $i } {
+            transition: transform #{ 0.7s + $i * 0.02s } #{ $i * 0.02s } ease-in;
+        }
+    }
+}
+
+.wrapper.animate-in > div {
+    transform: translate3d( 100%, 0, 0 );
+}
+
+.wrapper.animate-out > div {
+    transform: translate3d( -100%, 0, 0 );
+}
+
+.wrapper.animate-in .block {
+    transform: translate3d( 1000px, 0, 0 );
+}
+
+.wrapper.animate-out .block {
+    transform: translate3d( -500px, 0, 0 );
+}
+
+p, ol {
+    font-family: $roboto-mono;
+    font-size: 12px;
+    line-height: 18px;
+    letter-spacing: 0.5px;
+    width: 500px;
+
+    @include phone {
+        width: 100%;
+    }
+}
+
+ol {
+    list-style-type: decimal;
+    padding: 23px;
+
+    li {
+        margin-bottom: 15px;
+    }
+}
+
+h2 {
+    margin-top: 55px;
+    margin-bottom: 40px;
+    color: $yellow;
+    font-size: 50px;
+
+    @include phone {
+        font-size: 30px;
+        margin-top: 40px;
+    }
+}
+
+h3 {
+    font-family: $cedarville;
+    font-weight: 400;
+    font-size: 22px;
+    line-height: 21px;
+    letter-spacing: 0.1em;
+    color: $yellow;
+    margin-top: 20px;
+    margin-bottom: 4px;
+}
+
+.oswald-bold {
+    font-family: $oswald;
+    font-weight: 700;
+    font-size: 100%;
+    letter-spacing: 0.22em;
+
+    &.large {
+        letter-spacing: 0.5em;
+    }
+}
+
+.oswald-regular {
+    font-family: $oswald;
+    font-weight: 400;
+    font-size: 100%;
+    letter-spacing: 0.22em;
+
+    &.large {
+        letter-spacing: 0.5em;
+    }
+}
+
+.vidaloka-regular {
+    font-family: $vidaloka;
+    font-weight: 400;
+    font-size: 127%;
+    letter-spacing: 0.22em;
+
+    &.large {
+        letter-spacing: 0.5em;
+    }
+}
+
+.roboto-mono {
+    font-family: $roboto-mono;
+    font-weight: 400;
+    font-size: 127%;
+    letter-spacing: 0.2em;
+
+    &.large {
+        letter-spacing: 0.5em;
+    }
+}
+
+.fade-in-title {
+
+    span.none-space {
+        display: inline-block;
+    }
+
+    &.title-hidden span {
+        opacity: 0;
+        transform: scale( 0.7, 0.7 );
+    }
+
+    @for $i from 1 through 37 {
+        & span:nth-child( #{ $i } ) {
+            transition: all 1.5s ( random( 150 ) / 100 ) + s ease-out;
+        }
+    }
+}
+
+.triangle {
+    font-family: $roboto-mono;
+    font-weight: 400;
+    font-size: 127%;
+    letter-spacing: 0.4em;
+
+    position: relative;
+
+    &:after {
+        content: " ";
+        position: absolute;
+        top: 50%;
+        left: 20%;
+        transform: translate( 0, -50% );
+
+        width: 0;
+        height: 0;
+
+        border-left: 12px solid white;
+        border-top: 8px solid transparent;
+        border-bottom: 8px solid transparent;
+    }
+}
+
+.static-image {
+    position: relative;
+    overflow: hidden;
+
+    .static-image-inner, .static-video-inner {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        left: 0;
+    }
+
+    .static-image-inner {
+        background-size: cover;
+        background-position: center center;
+    }
+
+    .static-video-inner {
+        object-fit: cover;
+        object-position: center center;
+    }
+}

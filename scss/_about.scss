@@ -1,0 +1,10 @@
+#about {
+    .acc {
+        @include hidden-text;
+        background-image: url( /static/images/art-copy-code.png );
+        background-size: 227px 31px;
+        width: 227px;
+        height: 31px;
+        margin-bottom: 15px;
+    }
+}

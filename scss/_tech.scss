@@ -1,0 +1,274 @@
+#tech {
+    background-color: $yellow;
+    overflow-y: hidden;
+
+    h2 {
+        color: white;
+    }
+
+    .holder {
+        position: relative;
+        width: 100%;
+        height: 350px;
+        margin-top: 70px;
+
+        @media ( max-width: 800px ) {
+            height: 3 * 350px;
+        }
+    }
+
+    .table {
+        position: absolute;
+        top: 0;
+        left: 50%;
+        transform: translate( -50%, 0 );
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        height: 100%;
+        width: 1050px;
+
+        @media ( max-width: 800px ) {
+            width: 268px;
+        }
+    }
+
+    .column {
+        position: relative;
+        width: 33%;
+        height: 100%;
+
+        @media ( max-width: 800px ) {
+            width: 100%;
+            height: 290px;
+            margin-bottom: 50px;
+        }
+
+        .title {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            text-align: center;
+            font-size: 22px;
+            letter-spacing: 0.1em;
+            font-family: $cedarville;
+        }
+
+        .circle {
+            width: 80%;
+            padding-top: 80%;
+            border-radius: 100%;
+            border: 2px solid rgba( 0, 0, 0, 0 );
+            position: absolute;
+            left: 50%;
+            transform: translate( -50%, 0 );
+        }
+
+        .circle.camera {
+            border: 2px solid white;
+        }
+
+        .center {
+            @include center-self;
+            background-position: center center;
+            background-size: contain;
+        }
+
+        .inner-circle {
+            @include center-self;
+            width: 42%;
+            padding-top: 42%;
+            border-radius: 100%;
+            border: 2px solid white;
+        }
+
+        .line {
+            width: 80px;
+            height: 2px;
+            position: absolute;
+            top: calc( 50% - 1px );
+            left: 50%;
+            transform-origin: left center;
+            background-color: white;
+        }
+
+        @for $j from 1 through 16 {
+            .line-#{ $j } {
+                transform: rotate( $j * ( 360deg / 16 )  ) translate( 58px, 0 );
+            }
+        }
+
+        .center.camera, .center.video {
+            width: 31.5%;
+            padding-top: 31.5%;
+            background-image: url( /static/images/camera.png );
+        }
+
+        .center.audio {
+            width: 63%;
+            padding-top: 63%;
+            background-image: url( /static/images/audio.png );
+        }
+
+        .char {
+            position: absolute;
+            left: calc( 50% - 4px );
+            top: calc( 50% - 6px );
+            font-size: 12px;
+            font-family: $roboto-mono;
+            transform-origin: center center;
+        }
+
+        .table {
+            @include center-content;
+            width: 50px;
+            height: 50px;
+            border: 2px solid white;
+            border-radius: 100%;
+            font-size: 10px;
+            font-family: $roboto-mono;
+            position: absolute;
+            top: 0;
+            left: 0;
+            color: white;
+        }
+
+        $table-positions: (
+            ( 90px, 200px ),
+            ( 20px, 130px ),
+            ( 60px, 50px ),
+            ( 160px, 40px),
+            ( 210px, 120px ),
+            ( 174px, 187px )
+        );
+
+        @for $i from 1 through 6 {
+            $item: nth( $table-positions, $i );
+
+            .table-#{ $i } {
+                transform: translate( nth( $item, 1 ), nth( $item, 2 ) );
+            }
+        }
+
+        .circle.camera {
+            @include circle-char( 15, 3, -15, -160 );
+        }
+
+        .circle.audio {
+            @include circle-char( 16, 5, -10, -100 );
+        }
+
+        .circle.video {
+            @include circle-char( 10, 3, 6, -160 );
+        }
+    }
+
+    .rotator {
+        width: 120%;
+        height: 120%;
+        position: absolute;
+        left: -10%;
+        top: -10%;
+        border-radius: 50%;
+        transform-origin: center center;
+        overflow: hidden;
+        transition: opacity 2s;
+        opacity: 0;
+
+        &:before {
+            content: " ";
+            background-color: #ffc845;
+            border-radius: 50%;
+            width: 98%;
+            height: 98%;
+            @include center-self;
+        }
+
+        .cover-1, .cover-2{
+            position: absolute;
+            left: 0;
+            background-color: $yellow;
+        }
+
+        .cover-1 {
+            height: 100%;
+            width: 50%;
+            top: 0;
+            border-top-left-radius: 100%;
+            border-bottom-left-radius: 100%;
+        }
+
+        .cover-2 {
+            width: 100%;
+            height: 50%;
+            top: 50%;
+            border-bottom-left-radius: 100%;
+            border-bottom-right-radius: 100%;
+        }
+
+    }
+
+    .border {
+        @include center-self;
+        width: 100%;
+        height: 100%;
+        border: 2px solid white;
+        border-radius: 50%;
+    }
+}
+
+@media ( max-width: 800px ) {
+    #tech .column {
+
+        .title {
+            bottom: 20px;
+        }
+
+        .line {
+            width: 63px;
+        }
+
+        @for $j from 1 through 16 {
+            .line-#{ $j } {
+                transform: rotate( $j * ( 360deg / 16 )  ) translate( 45px, 0 );
+            }
+        }
+
+        .circle.camera {
+            @include circle-char( 15, 3.7, -15, -130 );
+        }
+
+        .circle.audio {
+            @include circle-char( 16, 5.6, -10, -87 );
+        }
+
+        .circle.video {
+            @include circle-char( 10, 3.7, 6, -130 );
+        }
+
+        .table {
+            width: 40px;
+            height: 40px;
+        }
+
+        $table-positions: (
+            ( 70px, 150px ),
+            ( 20px, 110px ),
+            ( 50px, 30px ),
+            ( 130px, 40px ),
+            ( 150px, 90px ),
+            ( 124px, 147px )
+        );
+
+        @for $i from 1 through 6 {
+            $item: nth( $table-positions, $i );
+
+            .table-#{ $i } {
+                transform: translate( nth( $item, 1 ), nth( $item, 2 ) );
+            }
+        }
+
+    }
+}

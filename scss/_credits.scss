@@ -1,0 +1,30 @@
+#credits {
+    .line {
+        font-family: $roboto-mono;
+        font-size: 12px;
+        line-height: 18px;
+        letter-spacing: 0.5px;
+        width: 500px;
+        display: flex;
+        flex-direction: row;
+    }
+
+    .key, .value {
+        width: 223px;
+
+    }
+
+    @include phone {
+        .line {
+            width: 100%;
+        }
+
+        .key, .value {
+            width: 50%;
+        }
+
+        .value {
+            padding-left: 10px;
+        }
+    }
+}

@@ -1,0 +1,52 @@
+{
+  "name": "tabel",
+  "author": {
+    "name": "Art Copy Code",
+    "email": "accincubator@google.com",
+    "url": "http://www.artcopycode.com"
+  },
+  "version": "1.0.0",
+  "license": "Apache-2.0",
+  "repository": {
+    "type": "git",
+    "url": "https://acc-agency-code.googlesource.com/gweb-acc-tabelverity"
+  },
+  "devDependencies": {
+    "babel-plugin-transform-react-jsx": "^6.23.0",
+    "babel-preset-es2015": "^6.22.0",
+    "babelify": "^7.3.0",
+    "compass-importer": "^0.4.1",
+    "eslint": "^3.19.0",
+    "eslint-config-google": "^0.7.1",
+    "eslint-plugin-react": "^6.10.3",
+    "express": "^4.15.2",
+    "glsl-easings": "^1.0.0",
+    "glsl-noise": "0.0.0",
+    "grunt": "~0.4.5",
+    "grunt-appengine": "~0.1.5",
+    "grunt-browserify": "^5.0.0",
+    "grunt-concurrent": "^2.3.1",
+    "grunt-contrib-clean": "^1.1.0",
+    "grunt-contrib-compass": "^1.1.1",
+    "grunt-contrib-connect": "^1.0.2",
+    "grunt-contrib-copy": "^1.0.0",
+    "grunt-contrib-uglify": "^2.3.0",
+    "grunt-contrib-watch": "^1.0.0",
+    "grunt-sass": "^2.0.0",
+    "grunt-watchify": "^0.1.0",
+    "load-grunt-tasks": "^3.5.2",
+    "webvr-polyfill": "^0.9.27"
+  },
+  "dependencies": {
+    "a-big-triangle": "^1.0.3",
+    "gl-fbo": "^2.0.5",
+    "gl-geometry": "^3.1.1",
+    "gl-shader": "^4.2.1",
+    "gl-texture2d": "^2.1.0",
+    "glslify": "^6.0.2",
+    "mout": "^1.0.0",
+    "ndarray": "^1.0.18",
+    "preact": "^7.2.0",
+    "three": "^0.85.2"
+  }
+}

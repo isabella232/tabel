@@ -1,0 +1,161 @@
+#player, #player-holder {
+    overflow: hidden;
+}
+
+// fix for the white frame around the polyfill
+#player-holder > div {
+    background-color: black;
+}
+
+#player {
+
+    .controls {
+        position: absolute;
+        left: 0;
+        bottom: 0;
+        background-color: black;
+        width: 100%;
+        height: 60px;
+        display: flex;
+        flex-direction: row;
+        transition: bottom 0.6s ease-in-out;
+    }
+
+    .play-controls, .vr-controls {
+        height: 100%;
+        flex: 0 0 108px;
+        position: relative;
+        cursor: pointer;
+    }
+
+    .play-controls.play {
+        &:before {
+            @include center-self;
+            content: " ";
+            width: 0px;
+            height: 0px;
+            border-top: 8px solid transparent;
+            border-bottom: 8px solid transparent;
+            border-left: 8px solid #4d4d4d;
+            transition: background-color 0.3s linear;
+        }
+
+        @include smart-hover {
+            &:before {
+                border-left: 8px solid $yellow;
+            }
+        }
+    }
+
+    .play-controls.pause {
+        @include center-content;
+        &:before, &:after {
+            content: " ";
+            background-color: #4d4d4d;
+            width: 3px;
+            height: 13px;
+            margin: 1.5px;
+            transition: background-color 0.3s linear;
+        }
+
+        @include smart-hover {
+            &:before, &:after {
+                background-color: $yellow;
+            }
+        }
+    }
+
+
+    .scrub-controls {
+        flex: 1 1 auto;
+        height: 100%;
+        position: relative
+    }
+
+    .scrub-bar {
+        width: 100%;
+        height: 2px;
+        background-color: #1c1c1c;
+        position: absolute;
+        bottom: 28px;
+        left: 0;
+
+        .highlight, .progress {
+            position: absolute;
+            top: 0;
+            left: 0;
+            height: 100%;
+            width: 0;
+        }
+
+        .highlight {
+            background-color: #505050;
+        }
+
+        .progress {
+            background-color: $yellow;
+        }
+    }
+
+    .close {
+        position: absolute;
+        top: 30px;
+        right: 30px;
+        width: 20px;
+        height: 20px;
+        cursor: pointer;
+
+        &:after, &:before {
+            @include center-self;
+            content: " ";
+            width: 20px;
+            height: 2px;
+            background-color: white;
+        }
+
+        &:after {
+            transform: translate( -50%, -50% ) rotate( 45deg );
+            transition: all 0.4s ease-in-out;
+        }
+
+        &:before {
+            transform: translate( -50%, -50% ) rotate( -45deg );
+            transition: all 0.9s cubic-bezier( 0.52, 0, 0, 1 );
+        }
+
+        &:hover, &.mobile-hover {
+
+            &:after {
+                background-color: $yellow;
+                transform: translate( -50%, -50% ) rotate( 135deg );
+            }
+
+            &:before {
+                background-color: $yellow;
+                transform: translate( -50%, -50% ) rotate( 225deg );
+            }
+        }
+    }
+
+    .vr-controls {
+        @include center-content;
+        transition: all 0.3s;
+        fill: #4d4d4d;
+
+        svg {
+            width: 30px;
+            height: 30px;
+        }
+
+        @include smart-hover {
+            fill: $yellow;
+        }
+    }
+}
+
+#player-cover {
+    @include center-self;
+    background-color: black;
+    opacity: 1;
+    transition: opacity 0.5s;
+}

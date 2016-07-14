@@ -1,0 +1,59 @@
+@mixin center-content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+@mixin center-self {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate( -50%, -50% );
+}
+
+@mixin layer {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+@mixin hidden-text {
+    overflow: hidden;
+    text-indent: -10000px;
+}
+
+@mixin circle-char( $count, $degree, $offset, $distance ) {
+    @for $i from 1 through $count {
+        .#{ "char-" + $i } {
+            transform: rotate( ( $i * $degree + $offset ) + deg ) translate( 0, $distance + px );
+        }
+    }
+}
+
+@mixin phone {
+    @media only screen and ( min-device-width: 320px ) and ( max-device-width: 480px ) {
+        @content;
+    }
+}
+
+@mixin computer {
+    @media only screen and ( min-device-width: 481px ) {
+        @content;
+    }
+}
+
+@mixin smart-hover {
+    @include phone {
+        &.mobile-active {
+            @content;
+        }
+    }
+
+    @include computer {
+        &:hover {
+            @content;
+        }
+    }
+}

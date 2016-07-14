@@ -1,0 +1,21 @@
+# mac system files
+.DS_Store
+
+# packages managed by NPM
+node_modules
+
+# ignore compass generation files
+.sass-cache
+
+# built files
+out
+
+# editor files
+.vscode
+
+# video/audio stored in bucket. The local copies are only used in
+# case of offline setup.
+static/mp3/
+static/mp4/
+static/webm/
+static/ogg/

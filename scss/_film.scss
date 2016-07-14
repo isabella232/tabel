@@ -1,0 +1,378 @@
+#film {
+    height: 100%;
+    background-color: black;
+    transform-style: flat;
+    overflow: hidden;
+
+    .subtitle-mobile {
+        display: none;
+    }
+
+    #image-canvas {
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        top: 0;
+        left: 0;
+    }
+
+    #image-canvas.iphone {
+        background-image: url( /static/images/background-mobile.jpg );
+        background-size: cover;
+        background-position: center center;
+    }
+
+    footer {
+        position: fixed;
+        bottom: 0;
+        left: 0;
+
+        @media ( max-width: 800px ) {
+            height: 55px;
+        }
+    }
+
+    .white-cover {
+        transition: all 3s;
+        background-color: rgba( 0, 0, 0, 0 );
+    }
+
+    .black-cover {
+        opacity: 0;
+        transition: opacity 1s;
+        background-color: black;
+        display: none;
+        @extend .layer;
+    }
+
+    .black-cover.visible {
+        display: block;
+    }
+
+    .black-cover.show {
+        opacity: 1;
+    }
+
+    &.preloading .white-cover {
+        background-color: rgba( 0, 0, 0, 1 );
+    }
+
+    .center {
+        @include center-self;
+
+        @media ( max-width: 800px ) {
+            top: 40%;
+        }
+
+        transform-style: preserve-3d;
+        perspective: 600px;
+
+        transition: opacity 0.7s 0.8s linear;
+
+        .logo {
+            margin-bottom: 40px;
+            margin-left: 10px;
+            color: $yellow;
+            font-size: 76px;
+
+            transform-origin: center center;
+
+            @media ( max-width: 800px ) {
+                font-size: 50px;
+                margin-bottom: 20px;
+            }
+
+            $times: 3.5s, 4s, 3.8s, 4.7s, 4.3s;
+            $delays: 0s, 0.5s, 0.8s, 0.2s, 1s;
+
+            @for $i from 1 through 5 {
+                span:nth-child( #{ $i } ) {
+                    transition: all #{ nth( $times, $i ) } ease-out #{ nth( $delays, $i ) };
+                }
+            }
+
+            span {
+                display: inline-block
+            }
+        }
+
+        .logo.distant {
+            span {
+                opacity: 0;
+                transform: scale( 0.7, 0.7 );
+            }
+        }
+
+        .subtitle {
+            font-size: 20px;
+            color: white;
+            letter-spacing: 0.1em;
+            font-family: $cedarville;
+
+            @media ( max-width: 800px ) {
+                font-size: 16px;
+            }
+        }
+
+        .subtitle.distant {
+            color: black;
+        }
+
+        .subtitle-2 {
+            margin-top: 20px;
+            margin-left: 50px;
+
+            @media ( max-width: 800px ) {
+                margin-top: 10px;
+                margin-left: 20px;
+            }
+        }
+
+        .subtitle-2.distant {
+            margin-left: 20px;
+
+            @media ( max-width: 800px ) {
+                margin-left: 5px;
+            }
+        }
+
+        .play {
+            font-size: 20px;
+            color: white;
+            cursor: pointer;
+            margin-top: 50px;
+
+            position: absolute;
+            left: 50%;
+            transform: translate( -50%, 0 );
+            transition: opacity 0.5s 1s;
+
+            @media ( max-width: 800px ) {
+                margin-top: 20px;
+            }
+
+            span {
+                display: inline-block;
+            }
+
+            @for $i from 1 through 5 {
+                & span:nth-child( #{ $i } ) {
+                    transition: color 0.2s #{ $i * 0.05 }s ease-in-out;
+                }
+            }
+        }
+
+        .play.clickable {
+            &:after, &:before {
+                content: " ";
+                position: absolute;
+                bottom: -4px;
+                left: 0;
+                width: 0%;
+                height: 2px;
+            }
+
+            &:before {
+                background-color: white;
+                transition: all 0.3s ease-in-out;
+            }
+
+            &:after {
+                background-color: $yellow;
+                transition: all 0.7s ease-in-out;
+            }
+
+            &:hover {
+                &:after, &:before {
+                    width: 95%;
+                }
+
+                span {
+                    color: $yellow;
+                }
+            }
+        }
+
+        .play.circle-loader {
+            transform: translate( -50%, 0 );
+        }
+
+
+        @keyframes spin {
+            from { transform: rotate( 0deg ) }
+            to { transform: rotate( 360deg ) }
+        }
+
+        .circle-loader {
+            width: 50px;
+            height: 50px;
+            font-family: $cedarville;
+            font-size: 16px;
+            transition: all 0.1s ease-in-out;
+
+            @include center-content;
+
+            canvas {
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                transform-origin: center center;
+                animation: spin 2s infinite linear;
+            }
+        }
+    }
+
+    .iphone-gate {
+        background-color: rgba( 0, 0, 0, 0.8 );
+        padding: 40px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: flex-start;
+
+        @media ( min-width: 800px ) {
+            padding: 200px;
+            background-color: rgba( 0, 0, 0, 0.9 );
+        }
+
+        .snap {
+            margin-bottom: 10px;
+        }
+
+        .message {
+            font-size: 18px;
+            font-family: $cedarville;
+            line-height: 20px;
+            color: white;
+            padding-right: 30px;
+        }
+
+        .close {
+            position: absolute;
+            top: 30px;
+            right: 30px;
+            width: 20px;
+            height: 20px;
+            cursor: pointer;
+
+            &:after, &:before {
+                @include center-self;
+                content: " ";
+                width: 20px;
+                height: 2px;
+                background-color: white;
+            }
+
+            &:after {
+                transform: translate( -50%, -50% ) rotate( 45deg );
+            }
+
+            &:before {
+                transform: translate( -50%, -50% ) rotate( -45deg );
+            }
+        }
+    }
+
+    @include phone {
+
+        .center {
+            width: 100%;
+            height: 100%;
+
+            .logo {
+                margin-top: 200px;
+                width: 100%;
+                text-align: center;
+                font-size: 50px;
+                margin-bottom: 26px;
+            }
+
+            .play {
+                margin-top: 0;
+            }
+        }
+
+        .subtitle {
+            display: none;
+        }
+
+        .subtitle-mobile {
+            display: block;
+            line-height: 20px;
+            color: white;
+            font-size: 13px;
+            font-family: $cedarville;
+            position: absolute;
+            top: 350px;
+            left: 10%;
+            width: 80%;
+            letter-spacing: 0.4em;
+            transition: all 2s ease-out 1s;
+
+            & > div {
+                text-align: center;
+            }
+
+            .line-1 {
+                padding-left: 5px;
+            }
+
+            .line-2 {
+                padding-left: 15px;
+                margin-bottom: 10px;
+            }
+
+            .line-3 {
+                padding-left: 30px;
+            }
+
+            .line-4 {
+                padding-left: 25px;
+            }
+        }
+
+        .subtitle-mobile.distant {
+            color: black;
+        }
+    }
+}
+
+#film.animate-out,
+#film.animate-in {
+    .center {
+        opacity: 0;
+    }
+}
+
+#film.animate-out .center {
+    transition: opacity 0.7s 0s linear;
+}
+
+#film.preloading {
+    .play {
+        opacity: 0;
+        transform: translate( 0, 0 );
+    }
+
+    .subtitle {
+        transition: all 2s ease-out 1s;
+    }
+}
+
+#film.animate-in-black {
+    .white-cover {
+        transition: all 0.7s;
+        background-color: black;
+    }
+
+    .center {
+        opacity: 0;
+        transition: all 0.7s;
+    }
+}
+
+.screenmode #player .controls {
+    bottom: -60px;
+}
